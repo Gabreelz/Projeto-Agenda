@@ -6,51 +6,57 @@
     <div class="col-lg-2"></div>
 
     <div class="col-lg-8 my-3">
-      <h1 class="text-center">Login</h1>
-      <p class="text-center lead">Faça o login ou crie sua conta abaixo</p>
+      <h1 class="text-center">Criar conta ou Entrar</h1>
+      <p class="text-center lead">Faça login ou crie sua conta abaixo</p>
+
+      <%- include('includes/messages'); %>
 
       <div class="row">
+
         <div class="col-lg">
-          <h4>Faça o Login</h4>
-          <form action="/login/login" method="POST">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <h4>Faça seu cadastro</h4>
+          <p>Se você ainda não tem conta, preencha o formulário abaixo:</p>
+
+          <form action="/login/register" method="POST">
+            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
             <div class="form-group">
-              <label for="exampleInputEmail1">E-mail</label>
-              <input type="email" class="form-control" id="Email" aria-describedby="emailHelp">
+              <label>Seu e-mail</label>
+              <input type="email" class="form-control" name="email">
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Senha</label>
-              <input type="password" class="form-control" id="Password">
+              <label>Sua senha</label>
+              <input type="password" class="form-control" name="password">
             </div>
-            <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Lembrar-me</label>
+            <button type="submit" class="btn btn-primary">Criar conta</button>
+          </form>
+
+        </div>
+
+        <div class="col-lg">
+          <h4>Faça seu login</h4>
+
+          <p>Se você já tem uma conta, faça login abaixo:</p>
+
+          <form action="/login/index" method="POST">
+            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+            <div class="form-group">
+              <label>Seu e-mail</label>
+              <input type="email" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+              <label>Sua senha</label>
+              <input type="password" class="form-control" name="password">
             </div>
             <button type="submit" class="btn btn-primary">Entrar</button>
           </form>
-      </div>
-        
-      
-      
-      <div class="col-lg">
-          <h4>Crie sua conta</h4>
-          <form action="/login/register" method="POST">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <div class="form-group">
-              <label for="exampleInputEmail1">E-mail</label>
-              <input type="email" class="form-control" id="Email" aria-describedby="emailHelp">
-              <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu e-mail com mais ninguém.</small>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Senha</label>
-              <input type="password" class="form-control" id="Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Criar Conta</button>
-          </form>
+
+          
+        </div>
+
       </div>
 
     </div>
-    
+
     <div class="col-lg-2"></div>
   </div>
 </div>

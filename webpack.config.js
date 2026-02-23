@@ -1,10 +1,3 @@
-//O Webpack é um bundler.
-//Bundler = ferramenta que:
-//Junta vários arquivos em um só
-//Converte JS moderno para JS compatível
-//Processa CSS
-//Otimiza código para produção
-
 const path = require('path'); // CommonJS
 
 module.exports = {
