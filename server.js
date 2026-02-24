@@ -38,6 +38,11 @@ const sessionOptions = session({
 app.use(sessionOptions);
 app.use(flash());
 
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  next();
+});
+
 app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
 
