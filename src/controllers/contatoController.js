@@ -1,4 +1,4 @@
-const ContatoModel = require('../Model/ContatoModel');
+const Contato = require('../Model/ContatoModel');
 
 exports.index = (req, res) => {
   res.render('contato', {
@@ -13,7 +13,7 @@ exports.register = async(req, res) => {
 
     if(contato.errors.length > 0) {
       req.flash('errors', contato.errors);
-      req.session.save(() => res.redirect('back'));
+      req.session.save(() => res.redirect('/contato/index'));
       return;
     }
 
