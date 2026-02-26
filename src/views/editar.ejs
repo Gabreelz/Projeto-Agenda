@@ -9,19 +9,20 @@
         <div class="card-body p-4">
 
           <div class="text-center mb-4">
-            <h2 class="fw-bold">Novo Contato</h2>
+            <h2 class="fw-bold">Editar Contato</h2>
             <p class="text-muted">
-              Preencha as informações para cadastrar um novo contato.
+              Atualize as informações do contato.
             </p>
           </div>
 
           <%- include('includes/messages') %>
 
-          <form action="/contato/register" method="POST">
+          <form action="/contato/edit/<%= contato._id %>" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
             <div class="form-floating mb-3">
-              <input type="text"
+              <input value="<%= contato.nome %>"
+                     type="text"
                      class="form-control rounded-3"
                      name="nome"
                      placeholder="Nome"
@@ -30,7 +31,8 @@
             </div>
 
             <div class="form-floating mb-3">
-              <input type="text"
+              <input value="<%= contato.sobrenome %>"
+                     type="text"
                      class="form-control rounded-3"
                      name="sobrenome"
                      placeholder="Sobrenome"
@@ -39,7 +41,8 @@
             </div>
 
             <div class="form-floating mb-3">
-              <input type="email"
+              <input value="<%= contato.email %>"
+                     type="email"
                      class="form-control rounded-3"
                      name="email"
                      placeholder="Email">
@@ -47,7 +50,8 @@
             </div>
 
             <div class="form-floating mb-4">
-              <input type="tel"
+              <input value="<%= contato.telefone %>"
+                     type="tel"
                      class="form-control rounded-3"
                      name="telefone"
                      placeholder="Telefone">
@@ -55,8 +59,8 @@
             </div>
 
             <div class="d-grid">
-              <button type="submit" class="btn btn-success btn-lg rounded-3">
-                Criar Contato
+              <button type="submit" class="btn btn-primary btn-lg rounded-3">
+                Atualizar Contato
               </button>
             </div>
 

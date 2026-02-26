@@ -17,22 +17,34 @@ function Contato(body) {
   this.contato = null;
 }
 
-Contato.prototype.register = async function() {
+Contato.prototype.register = async function () {
   this.valida();
   if(this.errors.length > 0) return;
+
+  const existe = await Contato.buscaPorNomeSobrenome(
+    this.body.nome,
+    this.body.sobrenome
+  );
+
+  if (existe) {
+    this.errors.push('Já existe um contato com esse nome e sobrenome.');
+    return;
+  }
+
   this.contato = await ContatoModel.create(this.body);
 };
 
 Contato.prototype.valida = function() {
   this.cleanUp();
 
-  // Validação
-  // O e-mail precisa ser válido
   if(this.body.email && !validator.isEmail(this.body.email)) this.errors.push('E-mail inválido');
+
   if(!this.body.nome) this.errors.push('Nome é um campo obrigatório.');
+
   if(!this.body.email && !this.body.telefone) {
     this.errors.push('Pelo menos um contato precisa ser enviado: e-mail ou telefone.');
   }
+  
 };
 
 Contato.prototype.cleanUp = function() {
@@ -51,11 +63,28 @@ Contato.prototype.cleanUp = function() {
 };
 
 
-Contato.prototype.edit = async function(id) {
-  if(typeof id !== 'string') return;
+Contato.prototype.edit = async function (id) {
+  if (typeof id !== 'string') return;
+
   this.valida();
-  if(this.errors.length > 0) return;
-  this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, { new: true });
+  if (this.errors.length > 0) return;
+
+  const existe = await ContatoModel.findOne({
+    nome: this.body.nome,
+    sobrenome: this.body.sobrenome,
+    _id: { $ne: id },
+  });
+
+  if (existe) {
+    this.errors.push('Já existe outro contato com esse nome e sobrenome.');
+    return;
+  }
+
+  this.contato = await ContatoModel.findByIdAndUpdate(
+    id,
+    this.body,
+    { new: true }
+  );
 };
 
 Contato.buscaPorNomeSobrenome = async function(nome, sobrenome) {

@@ -1,94 +1,117 @@
 <%- include('includes/head') %>
 <%- include('includes/nav') %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-2"></div>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-8">
 
-    <div class="col-lg-8 my-3">
-      <h1 class="text-center">Criar conta ou Entrar</h1>
-      <p class="text-center lead">Faça login ou crie sua conta abaixo</p>
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">Acesse sua conta</h2>
+        <p class="text-muted">Entre ou crie sua conta para continuar</p>
+      </div>
 
       <%- include('includes/messages') %>
 
-      <div class="row">
+      <div class="row g-4">
 
         <!-- CADASTRO -->
-        <div class="col-lg">
-          <h4>Faça seu cadastro</h4>
-          <p>Se você ainda não tem conta, preencha o formulário abaixo:</p>
+        <div class="col-md-6">
+          <div class="card shadow-lg border-0 rounded-4 h-100">
+            <div class="card-body p-4">
 
-          <form action="/login/register" method="POST">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <h4 class="fw-bold mb-3">Criar conta</h4>
+              <p class="text-muted mb-4">
+                Ainda não tem cadastro? Crie sua conta abaixo.
+              </p>
 
-            <div class="form-group">
-              <label for="register-email">Seu e-mail</label>
-              <input 
-                id="register-email"
-                type="email" 
-                class="form-control" 
-                name="email"
-                autocomplete="email"
-                required>
+              <form action="/login/register" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                <div class="form-floating mb-3">
+                  <input 
+                    id="register-email"
+                    type="email" 
+                    class="form-control rounded-3" 
+                    name="email"
+                    placeholder="Email"
+                    autocomplete="email"
+                    required>
+                  <label for="register-email">Email</label>
+                </div>
+
+                <div class="form-floating mb-4">
+                  <input 
+                    id="register-password"
+                    type="password" 
+                    class="form-control rounded-3" 
+                    name="password"
+                    placeholder="Senha"
+                    autocomplete="new-password"
+                    required>
+                  <label for="register-password">Senha</label>
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-success btn-lg rounded-3">
+                    Criar conta
+                  </button>
+                </div>
+              </form>
+
             </div>
-
-            <div class="form-group">
-              <label for="register-password">Sua senha</label>
-              <input 
-                id="register-password"
-                type="password" 
-                class="form-control" 
-                name="password"
-                autocomplete="new-password"
-                required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">
-              Criar conta
-            </button>
-          </form>
+          </div>
         </div>
 
         <!-- LOGIN -->
-        <div class="col-lg">
-          <h4>Faça seu login</h4>
-          <p>Se você já tem uma conta, faça login abaixo:</p>
+        <div class="col-md-6">
+          <div class="card shadow-lg border-0 rounded-4 h-100">
+            <div class="card-body p-4">
 
-          <form action="/login/login" method="POST">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <h4 class="fw-bold mb-3">Entrar</h4>
+              <p class="text-muted mb-4">
+                Já possui uma conta? Faça login.
+              </p>
 
-            <div class="form-group">
-              <label for="login-email">Seu e-mail</label>
-              <input 
-                id="login-email"
-                type="email" 
-                class="form-control" 
-                name="email"
-                autocomplete="email"
-                required>
+              <form action="/login/login" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                <div class="form-floating mb-3">
+                  <input 
+                    id="login-email"
+                    type="email" 
+                    class="form-control rounded-3" 
+                    name="email"
+                    placeholder="Email"
+                    autocomplete="email"
+                    required>
+                  <label for="login-email">Email</label>
+                </div>
+
+                <div class="form-floating mb-4">
+                  <input 
+                    id="login-password"
+                    type="password" 
+                    class="form-control rounded-3" 
+                    name="password"
+                    placeholder="Senha"
+                    autocomplete="current-password"
+                    required>
+                  <label for="login-password">Senha</label>
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary btn-lg rounded-3">
+                    Entrar
+                  </button>
+                </div>
+              </form>
+
             </div>
-
-            <div class="form-group">
-              <label for="login-password">Sua senha</label>
-              <input 
-                id="login-password"
-                type="password" 
-                class="form-control" 
-                name="password"
-                autocomplete="current-password"
-                required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">
-              Entrar
-            </button>
-          </form>
+          </div>
         </div>
 
       </div>
     </div>
-
-    <div class="col-lg-2"></div>
   </div>
 </div>
 

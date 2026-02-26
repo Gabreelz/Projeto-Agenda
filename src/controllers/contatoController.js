@@ -20,7 +20,7 @@ exports.register = async (req, res) => {
 
     req.flash('success', 'Contato registrado com sucesso.');
     return req.session.save(() => {
-      res.redirect(`/contato/index/${contato.contato._id}`);
+      res.redirect(`/`);
     });
 
   } catch (e) {
@@ -36,7 +36,7 @@ exports.editIndex = async (req, res) => {
     const contato = await Contato.buscaPorId(req.params.id);
     if (!contato) return res.render('404');
 
-    res.render('contato', { contato });
+    res.render('editar', { contato });
 
   } catch (e) {
     console.error(e);
@@ -54,7 +54,7 @@ exports.edit = async (req, res) => {
     if (contato.errors.length > 0) {
       req.flash('errors', contato.errors);
       return req.session.save(() => {
-        res.redirect(`/contato/edit/${req.params.id}`);
+        res.redirect(`/`);
       });
     }
 
@@ -62,7 +62,7 @@ exports.edit = async (req, res) => {
 
     req.flash('success', 'Contato editado com sucesso.');
     return req.session.save(() => {
-      res.redirect(`/contato/index/${contato.contato._id}`);
+      res.redirect(`/`);
     });
 
   } catch (e) {
